@@ -1,0 +1,23 @@
+div .daily__appbar {
+    margin: 5px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.table1 tr {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.table1 tr td:first-child {
+    color: green;
+}
+
+.table1 tr td:last-child {
+    color: red;
+}
+
+.table1 tr:nth-child(even) {
+    background-color: lightcyan;
+}
