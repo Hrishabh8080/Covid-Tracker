@@ -9,9 +9,9 @@ export const DailyCases = ({ dailyData }) => {
             
             <tr>
                 <th>Date</th>    
-                <th>Cases</th>    
-                <th>Recover</th>    
-                <th>Death</th>    
+                <th>Total Cases</th>    
+                <th>Total Recover</th>    
+                <th>Total Death</th>    
             </tr>
             {
                 dailyData.map((dataa, i) => (
@@ -21,7 +21,7 @@ export const DailyCases = ({ dailyData }) => {
                         <td><strong>{dataa.recovered}</strong></td>
                         <td><strong>{dataa.deaths}</strong></td>
                     </tr>
-                ))
+                )).reverse()
             }
 
         </div>

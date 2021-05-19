@@ -1,13 +1,19 @@
 div .daily__appbar {
     margin: 5px 20px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
+}
+
+.table1 {
+    height: 400px;
+    overflow-y: scroll;
 }
 
 .table1 tr {
     display: flex;
     justify-content: space-between;
-    padding: 5px;
+    padding: 5px 0;
 }
 
 .table1 tr td:first-child {
@@ -20,4 +26,10 @@ div .daily__appbar {
 
 .table1 tr:nth-child(even) {
     background-color: lightcyan;
+}
+
+.table1 tr:first-child {
+    font-style: italic;
+    border-bottom: 1px solid;
+    margin-bottom: 10px;
 }

@@ -17,14 +17,17 @@ function App() {
   let dailyData1 = [];
 
   const particlesEffect = {
-    particles: {
-      number: {
-        value: 10,
-        density: {
-          enable: true,
-          value_area: 100
+    "particles": {
+      "number": {
+        "value": 80,
+        "density": {
+          "enable": true,
+          "value_area": 800
         }
-      }
+      },
+      "color": {
+        "value": ["#BD10E0", "#B8E986", "#50E3C2", "#FFD300", "#E86363"]
+      },
     }
   }
 
@@ -125,7 +128,7 @@ function App() {
         <CardContent>
 
           <br />
-          <h2>Check Daily Cases</h2>
+          <h2>Worldwide New Daily Cases</h2>
           <hr />
           <div className="daily__appbar">
             <h3 >Enter Day duration</h3>
@@ -141,7 +144,7 @@ function App() {
         <CardContent>
           <h3>Live Case By Country</h3>
           <Table countries={tableData} />
-          <h3>Worldwide new Cases</h3>
+          {/* <h3>Worldwide new Cases</h3> */}
           {/* <LineGraph  /> */}
         </CardContent>
       </Card>
