@@ -33,30 +33,26 @@ function App() {
 
 
   useEffect(() => {
-    fetch(`https://disease.sh/v3/covid-19/historical/${country === 'worldwide' ? 'all' : 'all'}?lastdays=${input}`)
+    const url = `https://disease.sh/v3/covid-19/historical/${country === 'worldwide' ? 'all' : 'all'}?lastdays=${input}`
+    fetch(url)
       .then(res => res.json())
       .then(data => {
         for (let dat in data.cases) {
-
+          // console.log(dat)
           let da = {
             adate: dat,
             cases: data.cases[dat],
             deaths: data.deaths[dat],
             recovered: data.recovered[dat],
           }
+
           dailyData1.push(da)
         }
         setdailyData(dailyData1)
-        // Object.keys(data.cases).map((key, i) => (
-        //     dailyData.push({ value: data.cases[key] })
-
-        // ))
-        // console.log(data)
         console.log(dailyData)
-
       });
 
-  }, [input])
+  },[input])
 
 
   useEffect(() => {
@@ -74,9 +70,7 @@ function App() {
             name: country.country,
             value: country.countryInfo.iso2
           }));
-
           const sortedData = sortData(data);
-
           setTableData(sortedData)
           setCountries(countries)
         });
@@ -97,58 +91,57 @@ function App() {
       .then((data) => {
         setInputCountry(countryCode);
         setCountryInfo(data);
-        //    setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-        //  setMapZoom(4);
       });
   };
-  console.log(countryInfo)
+  // console.log(countryInfo)
   return (
-    <div className="app">
-      <Particles params={particlesEffect} className="particles"></Particles>
-      <div className="app__left">
-        <div className="app__header">
-          <h1>Covid-Tracker</h1>
-          <FormControl className="app__dropdown">
-            <Select onChange={onCountryChange} variant="outlined" value={country} >
-              <MenuItem value='worldwide'>Worldwide</MenuItem>
-              {
-                countries.map((country) => (
-                  <MenuItem value={country.value}>{country.name}</MenuItem>
-                ))
-              }
-
-            </Select>
-          </FormControl>
-        </div>
-        <div className="app__stats">
-          <InfoBox title="Coronavirus Cases" cases={countryInfo.todayCases} total={countryInfo.cases} />
-          <InfoBox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered} />
-          <InfoBox title="Dedth" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
-        </div>
-        <CardContent>
-
-          <br />
-          <h2>Worldwide New Daily Cases</h2>
-          <hr />
-          <div className="daily__appbar">
-            <h3 >Enter Day duration</h3>
-            <TextField placeholder='Max 360 Day' value={input} onChange={event => setInput(event.target.value.replace(/\D/, ''))} />
-            {/* <button onClick={fetchData}> click me   </button> */}
+    <>
+      <div className="app">
+        <Particles params={particlesEffect} className="particles"></Particles>
+        <div className="app__left">
+          <div className="app__header">
+            <h1>Covid-Tracker</h1>
+            <FormControl className="app__dropdown">
+              <Select onChange={onCountryChange} variant="outlined" value={country} >
+                <MenuItem value='worldwide'>Worldwide</MenuItem>
+                {
+                  countries.map((country) => (
+                    <MenuItem value={country.value}>{country.name}</MenuItem>
+                  ))
+                }
+              </Select>
+            </FormControl>
           </div>
-          {/* {console.log('data>>>' + dailyData)} */}
-          <DailyCases dailyData={dailyData} />
-        </CardContent>
-        {/* <Map /> */}
+          <div className="app__stats">
+
+            <InfoBox title="Coronavirus Cases" cases={countryInfo.todayCases} total={countryInfo.cases} />
+            <InfoBox title="Recovered" cases={countryInfo.todayRecovered} total={countryInfo.recovered} />
+            <InfoBox title="Death" cases={countryInfo.todayDeaths} total={countryInfo.deaths} />
+          </div>
+          <CardContent>
+            <br />
+            <h2>Worldwide New Daily Cases</h2>
+            <hr />
+            <div className="daily__appbar">
+              <h3 >Enter Day duration</h3>
+              <TextField placeholder='Max 30 Day' value={input} onChange={event => setInput(event.target.value.replace(/\D/, ''))} />
+              {/* <button onClick={fetchData}> click me   </button> */}
+            </div>
+            {/* {console.log('data>>>' + country)} */}
+            <DailyCases dailyData={dailyData} />
+          </CardContent>
+        </div>
+        <Card className="app__right">
+          <CardContent>
+            <h3>Live Case By Country</h3>
+            <Table countries={tableData} />
+          </CardContent>
+        </Card>
       </div>
-      <Card className="app__right">
-        <CardContent>
-          <h3>Live Case By Country</h3>
-          <Table countries={tableData} />
-          {/* <h3>Worldwide new Cases</h3> */}
-          {/* <LineGraph  /> */}
-        </CardContent>
-      </Card>
-    </div>
+      <footer>
+        &#169;   Made By HRishabh
+      </footer>
+    </>
   );
 }
 

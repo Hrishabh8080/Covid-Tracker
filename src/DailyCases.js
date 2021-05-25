@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './DailyCases.css';
 export const DailyCases = ({ dailyData }) => {
     // fetchData();
     return (
         <div className='table1' >
 
-            {console.log(dailyData)}
+            {/* {console.log(dailyData)} */}
             
             <tr>
                 <th>Date</th>    

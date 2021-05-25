@@ -3,7 +3,7 @@
 }
 
 body {
-    background-color: #f5f6fa;
+    background-color: #5a5863ea;
 }
 
 .app {
@@ -35,6 +35,19 @@ body {
     left: 0;
     right: 0;
     z-index: -1;
+}
+
+.app__right {
+    height: max-content;
+}
+
+footer {
+    text-align: center;
+    color: white;
+    font-weight: 500;
+    font-style: italic;
+    margin-bottom: 20px;
+    position: sticky;
 }
 
 @media(max-width: 900px) {
